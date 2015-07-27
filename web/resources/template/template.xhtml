@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>#{parametros.aplicacao}</title>
+                <link type="text/css" rel="stylesheet" href="/ci/css/estilo.css" />
+            </f:facet>
+        </h:head>
+
+        <style type="text/css">
+            #rodapeTop, #rodapeBotton {
+                font-family: 'Lato', sans-serif;
+                font-size: 14px;
+                color: #FFFFFF !important;
+                font-weight: 700;
+                letter-spacing: 0px;
+                margin-top: auto;
+            }
+
+            #rodapeTop {
+                height: 202px;
+                clear: both;
+                background: transparent url('/ci/images/bg_rodapeBottom.jpg') left top repeat-x;
+                border-bottom: 0px solid #35568C;
+            }
+            #rodapeBotton {
+                height: 100%;
+                width: 100%;
+                background: url('/ci/images/bg_rodapeBottom.jpg') left repeat-x;
+                background-color: #35568C;
+            }
+            #lateralBotton {
+                height: 100%;
+                width: 100%;
+                background: url('/ci/images/bg_rodapeBottom.jpg') left repeat-x;
+                background-color: #35568C;
+            }
+
+            #rodapeTop a{
+                color:#FFF !important;
+            }
+            #menu{
+
+            }
+            #logo {
+                display: block;
+                float: left;
+                background: transparent url(/ci/images/logo_pms_transparente.png) left center no-repeat;
+                width: 195px;
+                height: 100px;
+                text-indent: -5000em;
+            }
+            a {
+                color: rgb(49, 48, 48) !important;
+                text-decoration: none;
+            }
+
+            #header-section1 {
+                background-color: #34558c;
+                height: 80px;
+                border-top: 4px solid #3e66a3;
+                padding-bottom: 0px;
+                width: auto;
+            } 
+
+            #header-section3 {
+                background: transparent url('/ci/images/bg_topBottom.png') left top repeat-x;
+                height: 35px;
+                width: auto;
+            } 
+
+            .rede-social{   
+                float: left; 
+                margin-top: 7px;
+            }
+            .rede-social li {   
+                display: inline;   
+            }
+
+            .font-bold {
+                font-weight: 900;
+                letter-spacing: 1px;
+            }
+
+            #menu_esquerdo {
+                clear:both;	
+            }
+            .ui-layout-north .ui-layout-unit-content {
+
+                
+                height: 100%;
+                width: 100%;
+                background: url('/ci/images/bg_rodapeBottom.jpg') left repeat-x;
+                overflow: visible !important;
+
+            }
+
+        </style>
+
+        <h:body  onload="" style="background: #3e66a3">
+            <h:form id="form" >
+                <p:layout fullPage="true" style="background-color: #3e66a3">
+
+
+
+                    <p:layoutUnit position="north" size="110" resizable="false" closable="false" collapsible="false" style="background: #35568C; background-color:#35568C; border-color:#35568C;overflow: hidden">
+                        <div class="ui-grid ui-grid-responsive" style="background: #35568C;overflow: hidden" >
+                            <div id="rodapeBotton" class="ui-grid-row" align="center" style="height: 70%;margin-top: -2px; margin-bottom: 2px;overflow: hidden" >
+
+                                <div class="ui-grid-col-12" align="center" style="width: 100%;overflow: hidden">
+
+                                    <div class="ui-grid-col-2" align="center"   style="overflow: hidden">
+                                        <img src="#{parametros.logo}"   alt="Transalvador" style="margin-top: 10px;float: left; width: 90%"/>
+                                    </div>
+                                    <div class="ui-grid-col-9" align="center" style="overflow: hidden">
+                                        <h1 >#{parametros.aplicacao}</h1>
+
+
+                                    </div>
+                                    <div class="ui-grid-col-1" align="right" style="overflow: hidden" >
+                                        <img src="#{parametros.logoPMS}"   alt="PMS" style="margin-top: 10px;float: right; width: 60%;background: none !important"/>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+                    </p:layoutUnit>
+
+
+                    <!--<p:layoutUnit position="south" size="55"  style="background: #35568C; background-color:#35568C;  border: 0; margin: 0">
+
+
+
+                        <div id="rodapeBotton" align="center" >
+                            <div class="ui-grid ui-grid-responsive">
+                                <div class="ui-grid-row">
+                                    <div class="ui-grid-col-2">
+
+
+                                    </div>
+                                    <div class="ui-grid-col-8">
+                                        <div style="algin: center;margin-top: 10px">
+                                            # {parametros.rodape}<br/>
+                                            <span style="font-weight: normal; font-size: 9px; letter-spacing: 0px;"># {parametros.endereco}</span>
+                                        </div> 
+
+                                    </div>
+                                    <div class="ui-grid-col-2">
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div> 
+                    </p:layoutUnit> -->
+
+                    <p:layoutUnit  position="west" size="205" header="Comunicação Interna" style="text-align: center;"  >
+
+                        <div align="center" style="height: 100%;background:#8AACCD">
+
+                            <p:menu id="menuLateral" style="width: 94%; height: 98%;background:#8AACCD;margin-bottom: 0px">
+                                <p:submenu label="Nova" style="background: #34558c">
+                                    <p:menuitem style="font-weight: bold " value="CI" url="/criar/novaci.xhtml" />
+                                    <p:menuitem style="font-weight: bold " value="CI Circular" url="/criar/novacircular.xhtml" />
+
+                                </p:submenu>
+                                <p:submenu label="Recebidas" style="background: #34558c">
+                                    <p:menuitem style="font-weight: bold "   value="CI's Recebidas (#{recebidasCountMB.verificarNaoLidas(usuarioBean.usuario.uo.id)})" url="/listar/listarci.xhtml" />
+                                </p:submenu>
+                                <p:submenu label="Enviadas"  style="background: #34558c">
+                                    <p:menuitem style="font-weight: bold "  value="CI's Enviadas" url="/listar/listarenviadas.xhtml" />
+                                </p:submenu>
+                                <p:submenu label="Arquivadas" style="background: #34558c">
+                                    <p:menuitem style="font-weight: bold " value="CI's Arquivadas" url="/listar/arquivadas.xhtml" />
+                                </p:submenu>
+                                <p:submenu label="Usuário" style="background: #34558c">
+                                    <p:menuitem style="font-weight: bold " value="Gerenciar Perfil" url="/usuario/atualizarPerfil.xhtml" />
+                                    <p:menuitem style="font-weight: bold " value="Logout" url="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout" />
+                                    <p:menuitem style="font-weight: bold " value="Gerencias Usuários" url="/administracao/usuario/cadastrar.xhtml" rendered="#{usuarioBean.usuario.login == 'admin'}" />
+                                </p:submenu>
+                            </p:menu>
+
+                        </div>
+
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="center"   >
+                        <div align="center"  >
+
+                            <ui:insert name="content" >Content</ui:insert>
+                        </div>
+                    </p:layoutUnit>
+                </p:layout>
+            </h:form>
+        </h:body>
+    </f:view>    
+</html>
+
+

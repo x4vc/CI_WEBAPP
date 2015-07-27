@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/resources/template/template.xhtml">
+        <ui:define name="content">
+            <div class="ui-grid ui-grid-responsive">
+                <div class="ui-grid-row" align="center">
+
+                    <p:fieldset id="novo" legend="Modificar meu Perfil" style="margin-bottom:20px;font-size: 10px;min-height: 70px; width: 95%;" styleClass="ui-grid-col-12">
+                        <p:messages id="alterarMSG" />
+                        <div class="ui-grid-row" align="center">
+                            <div class="ui-grid-col-3">
+                                <b>Seu Login</b><br/> <h:outputText value="#{usuarioBean.usuario.login}"  />
+                            </div>
+                            <div class="ui-grid-col-7">
+                                <b>Assinatura:</b>  <br/> <p:editor value="#{usuarioBean.usuario.assinatura}"   style="width: 95%"  requiredMessage="Informe uma assinatura" />
+                            </div>
+
+                        </div>
+                        <div class="ui-grid-row" align="center">
+                            <div class="ui-grid-col-10" align="right" >
+
+                            </div>
+                            <div class="ui-grid-col-2" align="right" >
+                                <p:commandButton action="#{usuarioBean.atualizarPerfil()}" style="width: 100%;" value="Salvar Alterações" update="alterarMSG" />
+                            </div>
+                        </div>
+
+
+
+                    </p:fieldset>
+                </div>
+
+                <br/>
+                <div class="ui-grid-row">
+                    <p:fieldset legend="Alterar Senha" style="margin-bottom:20px;font-size: 10px;min-height: 70px; width: 95%;" styleClass="ui-grid-col-12"  >
+
+                        <h:form>
+                            <p:messages id="alterarMSG2" autoUpdate="true"/>
+                            <div class="ui-grid-col-5">
+                                <p:outputLabel value="Nova Senha: "/> <p:password id="novaSenha"   value="#{usuarioBean.novaSenha}"  style="width: 70%"  />
+                            </div>
+                            <div class="ui-grid-col-5">
+                                <p:outputLabel value="Confirmar Nova Senha: "/> 
+                                <p:password   id="confSenha"  value="#{usuarioBean.confirmarSenha}"  style="width: 70%" />
+                                  
+                            </div>
+                            <div class="ui-grid-col-2" align="left">
+                                <p:commandButton action="#{usuarioBean.alterarSenha()}"   value="Alterar Senha" update="alterarMSG2" />
+                            </div>
+                        </h:form>
+                    </p:fieldset>
+                </div>
+                <br/>
+
+            </div>
+
+
+        </ui:define>
+    </ui:composition> 
+</html>
+
+
+

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/resources/template/template.xhtml">
+        <ui:define name="content">
+
+            <div class="ui-grid ui-grid-responsive">
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-12">
+                        <p:fieldset legend="CI's Arquivadas">
+                            <div class="ui-grid-row">
+                                <p:fieldset legend="Apresentação" style="width: 99%" >
+
+
+
+                                    <div class="ui-grid-col-12" align="left"  >
+                                        <p style="width: 100%">Aqui você encontrará todas as CI's arquivadas em sua unidade organizacional. Aqui também será possível visualizar todas as CI's Circulares ou CI's Enviadas com Cópia para sua Unidade Organizacional já visualizadas . Click no ícone da lupa <p:commandButton icon="ui-icon-search" disabled="true" /> localizada a direita para visualizar o conteúdo da CI. </p>
+
+
+                                    </div>
+
+
+
+
+                                </p:fieldset>
+                            </div>
+                            <br/>
+                            
+                            <div class="ui-grid-row">
+                                <div class="ui-grid-col-12">
+                                    <p:fieldset legend="CI's Arquivadas">
+                                        <p:dataTable var="ci" lazy="true" value="#{comunicacaoInternaListarMB.cisArquivadas}" style="text-align: center;" rows="20" paginator="true" >
+                                            
+                                            <p:column headerText="Tipo"  width="5%">
+                                                <img src="#{ci.gerarLogoTipoCI(usuarioBean.usuario.uo.id)}" title="#{ci.labelTipoCI(usuarioBean.usuario.uo.id)}" style=" height: 20px"/>
+                                                
+                                            </p:column>
+
+                                            <p:column headerText="Origem" filterBy="#{ci.uo.nome}" filterMatchMode="contains"  width="10%">
+                                                <h:outputText value="#{ci.uo.nome}" />
+                                            </p:column>
+
+                                            <p:column headerText="Assunto"  width="">
+                                                <h:outputText value="#{ci.assunto}" />
+                                            </p:column>
+
+                                            <p:column headerText="Apensamento" width="10%">
+                                                <h:outputText value="#{ci.apensamento.numeroCI}" />
+                                            </p:column>
+
+                                            <p:column headerText="Data Arquivamento" filterBy="#{ci.ultimoDespacho.data}"  width="10%"  >
+                                                <h:outputText value="#{ci.ultimoDespacho.data}" >
+                                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-03:00"/>  
+                                                </h:outputText>
+                                            </p:column>
+                                            <p:column headerText="Ações" width="5%" >
+                                                <p:commandButton icon="ui-icon-search" action="#{comunicacaoInternaListarMB.selecionar}" ajax="false" >
+                                                    <f:setPropertyActionListener value="#{ci}" target="#{comunicacaoInternaListarMB.ci}"/>
+                                                </p:commandButton>
+
+                                            </p:column>
+
+
+                                        </p:dataTable>
+
+                                    </p:fieldset>
+
+                                </div>
+                            </div>
+                            <br/>
+                            
+
+
+                        </p:fieldset>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </ui:define>
+    </ui:composition> 
+</html>
+
+

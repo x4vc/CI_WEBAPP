@@ -1,0 +1,14 @@
+
+body {
+    margin:0;
+    font-size: 12px;	
+}
+
+.maiusculo {
+    text-transform: capitalize;
+}
+
+.readonly{
+    background-color: gray;
+    cursor: not-allowed;
+}

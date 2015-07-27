@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="/./template.xhtml">
+        <ui:define name="content">
+            <style>
+                .ui-picklist .ui-picklist-list{
+                    width: 325px;
+                }
+                .ui-picklist ui-widget{
+                    width: 758px;
+                }
+            </style>
+
+            <p:growl id="retorno" showDetail="true"/>
+            <p:breadCrumb>
+                <p:menuitem value="Home" url="/./index.jsf" />
+                <p:menuitem value="Cadastrar" url="/./administracao/grupo/cadastrar.jsf" />
+                <p:menuitem value="Listar" url="/./administracao/grupo/listar.jsf" />
+            </p:breadCrumb>
+           
+            <h:inputHidden value="#{grupoMB.bean.id}"/>
+            
+            <p:panelGrid style="margin-top: 5px">
+                <f:facet name="header"> 
+                    <p:row>
+                        <p:column colspan="2">
+                          Administração de Grupo  
+                        </p:column>
+                    </p:row>                           
+                </f:facet>
+
+                <p:row>
+                    <p:column>
+                        <h:outputLabel value="Nome*" for="nome"/>
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="nome" value="#{grupoMB.bean.descricao}" 
+                                required="true" requiredMessage="Nome é obrigatório"  size="40" />
+                    </p:column>
+                </p:row>
+
+                <p:row>   
+                    <p:column colspan="2">
+                        <p:pickList id="permi" var="permissao" value="#{grupoMB.permissoes}" 
+                            itemValue="#{permissao}" itemLabel="#{permissao.descricao}" 
+                            converter="permissao" required="true" requiredMessage="Selecione uma permissão!"/>
+                    </p:column>
+                </p:row>            
+
+                <f:facet name="footer">  
+                    <p:row>
+                        <p:column colspan="2">
+                            <p:commandButton value="Salvar"  icon="ui-icon-check" action="#{grupoMB.persist()}" ajax="false"/> 
+                        </p:column>
+                    </p:row>                                 
+                </f:facet>  
+            </p:panelGrid>
+       
+            <h:outputText value="* Campos obrigatórios!" style="font-weight: bold"/>
+        </ui:define>
+    </ui:composition>
+</html>

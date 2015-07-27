@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/resources/template/template.xhtml">
+        <ui:define name="content">
+
+            <div class="ui-grid ui-grid-responsive">
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-12">
+                        <p:fieldset legend="CI's RECEBIDAS">
+                            <div class="ui-grid-row">
+                                <p:fieldset legend="Apresentação" style="width: 99%" >
+
+
+
+                                    <div class="ui-grid-col-12" align="left"  >
+                                        <p style="width: 100%">Aqui você encontrará todas as CI's encaminhadas para sua unidade organizacional e que estão pendentes de ações (Aprovação, Encaminhamento, Visualização ou Arquivamento). Click no ícone da lupa <p:commandButton icon="ui-icon-search" disabled="true" /> localizada a direita para visualizar o conteúdo da CI. O remetente será notificado automaticamente da leitura da CI assim que ela for visualizada.</p>
+                                        <p style="width: 100%">Nunca deixe CI's acumuladas na área de Recebidas. Lembre-se sempre de arquivas as CI's ou encaminhar para um outra unidade organizacional. </p>
+
+
+                                    </div>
+
+                                </p:fieldset>
+                            </div>
+                            <br/>
+                            <div class="ui-grid-row">
+                                <div class="ui-grid-col-12">
+
+                                    <p:fieldset legend="CI's Pendentes de Aprovação" rendered="#{usuarioBean.usuario.authority eq 'ROLE_ADM'}" >
+                                        <p:dataTable var="ci" lazy="true" value="#{comunicacaoInternaListarMB.cisPendentesAprovacao}" style="text-align: center;" widgetVar="ciTable" rows="10" paginator="true" emptyMessage="Parabéns, Sua unidade organizacional não possui nenhuma CI pendente de Aprovação" >
+
+                                           
+                                            <p:column headerText="Assunto"  width="">
+                                                <h:outputText value="#{ci.assunto}" />
+                                            </p:column>
+
+                                            <p:column headerText="Autor"  width="">
+                                                <h:outputText value="#{ci.autor.nome} (#{ci.autor.uo.nome})" />
+                                            </p:column>
+
+                                            <p:column headerText="Apensamento" width="10%">
+                                                <h:outputText value="#{ci.apensamento.numeroCI}" />
+                                            </p:column>
+
+                                            <p:column headerText="Data de Envio" filterBy="#{ci.data}" filterMatchMode="contains" width="10%"  >
+                                                <h:outputText value="#{ci.data}" >
+                                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-03:00"/>  
+                                                </h:outputText>
+                                            </p:column>
+                                            <p:column headerText="Ações" width="5%" >
+                                                <p:commandButton icon="ui-icon-search" action="#{comunicacaoInternaListarMB.selecionar}" ajax="false" >
+                                                    <f:setPropertyActionListener value="#{ci}" target="#{comunicacaoInternaListarMB.ci}"/>
+                                                </p:commandButton>
+
+                                            </p:column>
+
+
+                                        </p:dataTable>
+
+                                    </p:fieldset>
+
+                                </div>
+                            </div>
+                            <br/>
+                            <style type="text/css">  
+                                .old {
+                                    background-color: #EAF4FD !important;
+                                    background-image: none !important;
+                                    color: #000000 !important;
+                                }
+                            </style>  
+
+                            <p:poll interval="1000" listener="#{comunicacaoInternaListarMB.updateRecebidas()}" update="tRecebida, menuLateral" />
+                            <div class="ui-grid-row">
+                                <div class="ui-grid-col-12">
+                                    <p:fieldset legend="CI's Recebidas">
+                                        <p:dataTable id="tRecebida" var="ci" emptyMessage="Parabéns, sua unidade organizacional não possui nenhuma CI recebida" rowStyleClass="#{ci.lidoUO(usuarioBean.usuario.uo.id) ? 'old' : null}"  value="#{comunicacaoInternaListarMB.cisRecebidas}" lazy="true" style="text-align: center;" rows="4" paginator="true" >
+
+                                            <p:column headerText="Tipo"  width="5%">
+                                                <img src="#{ci.gerarLogoTipoCI(usuarioBean.usuario.uo.id)}" title="#{ci.labelTipoCI(usuarioBean.usuario.uo.id)}" style=" height: 20px"/>
+
+                                            </p:column>
+
+                                            <p:column filterBy="#{ci.uo.nome}" filterMatchMode="contains" headerText="Origem"   width="15%">
+                                                <h:outputText value="#{ci.uo.nome}" />
+                                            </p:column>
+
+                                            <p:column headerText="Assunto"  width="">
+                                                <h:outputText value="#{ci.assunto}" />
+                                            </p:column>
+
+                                            <p:column headerText="Apensamento" width="8%">
+                                                <h:outputText value="#{ci.apensamento.numeroCI}" />
+                                            </p:column>
+
+                                            <p:column headerText="Data de Envio" filterBy="#{ci.data}" filterMatchMode="contains"  width="10%"  >
+                                                <h:outputText value="#{ci.data}" >
+                                                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="GMT-03:00"/>  
+                                                </h:outputText>
+                                            </p:column>
+                                            <p:column headerText="Ações" width="5%" >
+                                                <p:commandButton icon="ui-icon-search" action="#{comunicacaoInternaListarMB.selecionar()}" actionListener="#{comunicacaoInternaListarMB.informarVisualizacao(ci.id)}" ajax="false" >
+                                                    <f:setPropertyActionListener value="#{ci}" target="#{comunicacaoInternaListarMB.ci}"/>
+                                                </p:commandButton>
+
+
+                                            </p:column>
+
+
+                                        </p:dataTable>
+
+                                    </p:fieldset>
+
+                                </div>
+                            </div>
+                            <br/>
+
+
+
+                        </p:fieldset>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </ui:define>
+    </ui:composition> 
+</html>
+
+

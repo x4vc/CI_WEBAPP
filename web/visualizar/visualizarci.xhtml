@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/resources/template/template.xhtml">
+        <ui:define name="content">
+            <h:outputStylesheet name="grid/grid.css" library="primefaces" />
+            <f:metadata>
+                <f:viewParam name="id" value="#{comunicacaoInternaListarMB.ci.id}"/>
+            </f:metadata> 
+
+            <p:fieldset id="conteudoCI"  >
+
+                <div class="ui-grid ui-grid-responsive">
+                    <div class="ui-grid-row" style="height: 20%">
+                        <div class="ui-grid-col-6" align="center">
+                            <!--<img src="#{parametros.logoPMSPreenchida}"   alt="PMS" />-->
+                            <img src="#{parametros.logoPreenchida}"   alt="Transalvador" />
+                        </div>
+                        <div class="ui-grid-col-6" align="center">
+                            <!--<img src="#{parametros.logoPreenchida}"   alt="Transalvador" />-->
+                            <img src="#{parametros.logoPMSPreenchida}"   alt="PMS" />
+                        </div>
+                    </div>
+
+                    <div class="ui-grid-row" style="height: 80%">
+                        <div class="ui-grid-col-12" align="center">
+                            <div class="ui-grid-row" >
+                                <div class="ui-grid-col-12" align="center">
+
+                                    <p:separator style="width: 99%" />
+                                </div>
+                            </div>
+                            <div class="ui-grid-row" align="center" >
+                                <div class="ui-grid-col-12" align="center">
+                                    <h3><b><p:outputLabel value="#{comunicacaoInternaListarMB.ci.tipoCI}" style="text-align: center" /> -  <p:outputLabel value="#{comunicacaoInternaListarMB.ci.numeroCI}" style="text-align: left" /></b> </h3>
+                                </div>
+
+                            </div>
+                            <div class="ui-grid-row"  >
+                                <div class="ui-grid-col-2" align="left">
+                                    <b>De:</b> <p:outputLabel value="#{comunicacaoInternaListarMB.ci.uo.nome}" style="text-align: left" />
+                                </div>
+<!--                                <div class="ui-grid-col-10" align="left">
+                                    <b>Número:</b> <p:outputLabel value="#{comunicacaoInternaListarMB.ci.numeroCI}" style="text-align: left" />
+                                </div>-->
+
+                            </div>
+                            <div class="ui-grid-row" align="left" >
+                                <div class="ui-grid-col-3" align="left">
+                                    <p:outputLabel value="Para: " style="font-weight: bold" rendered="#{comunicacaoInternaListarMB.ci.despachoList.get(0).para != null}" /> <p:outputLabel value="#{comunicacaoInternaListarMB.ci.despachoList.get(0).para.nome}" style="text-align: left; color: #{comunicacaoInternaListarMB.ci.despachoList.get(0).visualizado}" />
+                                </div>
+                            </div>
+                            <div class="ui-grid-row" align="left" >
+                                <div class="ui-grid-col-12" align="left">
+                                    <b>CC: </b>
+                                    <ui:repeat var="cc" value="#{comunicacaoInternaListarMB.ci.despachoList.get(0).despachoCopiaList}" >
+                                        <h:outputText value="#{cc.unidadeOrganizacional.nome},  " style="color: #{cc.visualizado}" />
+                                    </ui:repeat>
+
+                                </div>
+                            </div>
+                            <div class="ui-grid-row" align="left" >
+                                <div class="ui-grid-col-12" align="left">
+                                    <b>Assunto: </b> <p:outputLabel value="#{comunicacaoInternaListarMB.ci.assunto}" style="text-align: right" />
+
+
+                                </div>
+                            </div>
+                            <br/>
+                            <p:separator style="width: 99%" /> <br/>
+                            <div class="ui-grid-row" align="left" >
+                                <div class="ui-grid-col-12" align="left">
+                                    <p:outputLabel value="#{comunicacaoInternaListarMB.ci.despachoList.get(0).conteudo}" escape="false" style="text-align: left" />
+                                    <br/>
+                                    Em:
+                                    <h:outputText value="#{comunicacaoInternaListarMB.ci.despachoList.get(0).data}" style="font-weight: bold" >
+                                        <f:convertDateTime pattern="dd/MM/yyyy " timeZone="GMT-03:00"/>  
+                                    </h:outputText>
+
+
+
+
+
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="ui-grid-row" align="center" >
+
+                                <div class="ui-grid-col-9" align="center">
+
+                                </div>
+                                <div class="ui-grid-col-3" align="left">
+                                    <p:panel header="Anexos" rendered="#{comunicacaoInternaListarMB.ci.despachoList.get(0).anexoList.size() > 0}">
+
+
+                                        <ui:repeat var="anexo" value="#{comunicacaoInternaListarMB.ci.despachoList.get(0).anexoList}" >
+
+                                            <div class="ui-grid-row" align="center" >
+                                                <div class="ui-grid-col-8" align="left">
+                                                    <b>#{anexo.nome}</b>
+                                                </div>
+
+                                                <div class="ui-grid-col-4" align="right">
+                                                    <p:commandButton actionListener="#{comunicacaoInternaListarMB.initFile(anexo)}"  ajax="false"  icon="ui-icon-arrowthick-1-s">
+
+                                                        <p:fileDownload value="#{comunicacaoInternaListarMB.file}" />
+                                                    </p:commandButton>
+                                                </div>
+                                            </div>
+
+                                        </ui:repeat>
+                                    </p:panel>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>    
+
+
+            </p:fieldset>
+            <br/>
+            <p:fieldset id="despachos" legend="Despachos" rendered="#{comunicacaoInternaListarMB.ci.despachoList.size() > 1}" >
+                <div class="ui-grid ui-grid-responsive">
+                    <ui:repeat value="#{comunicacaoInternaListarMB.ci.despachoList}" var="despacho" varStatus="status">
+                        <p:fieldset rendered="#{status.index > 0 and despacho.autorizado and despacho.autorizadoExterno}"  >
+
+                            <div class="ui-grid-row" style="padding: 5px" align="left" >
+                                <div class="ui-grid-col-6" align="left">
+                                    <b>  <p:outputLabel value="#{comunicacaoInternaListarMB.ci.despachoList.get(status.index - 1).para.nome} " /> <p:outputLabel value=" #{despacho.statusString} " /> </b>
+                                </div>
+                            </div> 
+
+                            <br/>
+                            <p:panelGrid rendered="#{comunicacaoInternaListarMB.ci.despachoList.get(status.index - 1).despachoCopiaList.size() > 1 }" >
+                                <div class="ui-grid-row" align="left"  >
+
+
+                                    <div class="ui-grid-col-12" align="left">
+                                        <b>CC: </b>
+                                        <ui:repeat var="cc" value="#{comunicacaoInternaListarMB.ci.despachoList.get(status.index - 1).despachoCopiaList}" >
+                                            <h:outputText value="#{cc.unidadeOrganizacional.nome}, "  style="color: #{cc.visualizado}"/>
+                                        </ui:repeat>
+
+                                    </div>
+                                </div>
+                                <br/>
+                            </p:panelGrid>
+                            <div class="ui-grid-row" style="padding: 5px" align="left" >
+
+                                <div class="ui-grid-col-12" align="left">
+                                    <b>Observação:</b>
+                                    <br/>
+                                    <p:outputLabel value="#{despacho.conteudo}" escape="false" />
+
+                                </div>
+
+
+                            </div>
+                            <div class="ui-grid-row" align="center" >
+
+                                <div class="ui-grid-col-9" align="center">
+
+                                </div>
+                                <div class="ui-grid-col-3" align="left">
+                                    <p:panel header="Anexos" rendered="#{despacho.anexoList.size() > 0}">
+
+
+                                        <ui:repeat var="a" value="#{despacho.anexoList}" >
+
+                                            <div class="ui-grid-row" align="center" >
+                                                <div class="ui-grid-col-8" align="left">
+                                                    <b>#{a.nome}</b>
+                                                </div>
+
+                                                <div class="ui-grid-col-4" align="right">
+                                                    <p:commandButton actionListener="#{comunicacaoInternaListarMB.initFile(a)}" value="Download" ajax="false"  icon="ui-icon-arrowthick-1-s">
+                                                        <p:fileDownload value="#{comunicacaoInternaListarMB.file}" />
+                                                    </p:commandButton>
+                                                </div>
+                                            </div>
+
+                                        </ui:repeat>
+                                    </p:panel>
+
+
+                                </div>
+                            </div>
+
+                        </p:fieldset>
+                        <br/>
+                    </ui:repeat>
+                </div>
+
+            </p:fieldset>
+            <div class="ui-grid ui-grid-responsive">
+                <div class="ui-grid-row" >
+                    <div class="ui-grid-col-6" align="center">
+
+                    </div>
+
+                    <div class="ui-grid-col-1" align="center">
+                        <p:commandButton value="Imprimir" action="#{comunicacaoInternaListarMB.imprimirCI()}" ajax="false"  style="width: 95%" disabled="#{comunicacaoInternaListarMB.ci.ultimoDespacho.status == 2}"    >
+                            <!--<p:confirm header="Tem certeza que deseja imprimir?" message="Este sistema foi projetado e implementado visando, não só a praticidade e agilidade, como também, economizar papel. Só imprima se for absolutamente necessário." icon="ui-icon-alert" />
+                            -->
+                        </p:commandButton>
+
+                    </div>
+                    <div class="ui-grid-col-1" align="center">
+                        <p:commandButton value="Aprovar" action="#{comunicacaoInternaListarMB.aprovarCI()}" icon="ui-icon-check" style="width: 95%" disabled="#{!comunicacaoInternaListarMB.podeAprovar(usuarioBean.usuario.uo.id)}" ajax="false" />
+
+                    </div>
+                    <div class="ui-grid-col-1" align="center">
+
+
+
+                        <p:commandButton action="#{comunicacaoInternaMB.novoDespacho()}" value="Encaminhar" icon="ui-icon-mail-closed"   style="width: 95%" ajax="false" disabled="#{(comunicacaoInternaListarMB.ci.ultimoDespacho.status == 4) or (comunicacaoInternaListarMB.ci.ultimoDespacho.status == 2) or (comunicacaoInternaListarMB.ci.controleTipoCI(usuarioBean.usuario.uo.id) != 1)  }" >
+                            <f:setPropertyActionListener value="#{comunicacaoInternaListarMB.ci}" target="#{comunicacaoInternaMB.ci}"/>
+
+                        </p:commandButton>
+
+
+
+                    </div>
+                    <div class="ui-grid-col-1" align="center">
+                        <p:commandButton value="Arquivar" action="#{comunicacaoInternaMB.novoArquivamento()}" icon="ui-icon-folder-collapsed" style="width: 95%" disabled="#{!comunicacaoInternaListarMB.podeArquivar(comunicacaoInternaListarMB.ci.id)}" ajax="false" >
+                            <f:setPropertyActionListener value="#{comunicacaoInternaListarMB.ci}" target="#{comunicacaoInternaMB.ci}"/>
+                        </p:commandButton>
+
+
+                    </div>
+                    <div class="ui-grid-col-1" align="center">
+                        <p:commandButton value="Desarquivar" icon="ui-icon-folder-open" style="width: 95%" disabled="#{(comunicacaoInternaListarMB.ci.ultimoDespacho.status != 4) or (comunicacaoInternaListarMB.ci.controleTipoCI(usuarioBean.usuario.uo.id) != 1)}" />
+
+                    </div>
+                </div>
+
+            </div>
+
+            <p:confirmDialog global ="true" showEffect="fade">
+                
+                <h:commandButton value="Imprimir"    styleClass="ui-confirmdialog-yes" />
+                <p:commandButton value="Voltar" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+            </p:confirmDialog>
+
+
+
+
+        </ui:define>
+
+    </ui:composition>
+
+</html>
+

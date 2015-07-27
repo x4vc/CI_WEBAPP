@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/resources/template/template.xhtml">
+            <ui:define name="content">
+
+                <div class="ui-grid ui-grid-responsive" >
+                    <p:panel rendered="#{usuarioBean.usuario.login == 'admin'}">
+                        <div class="ui-grid-row">
+                            <div class="ui-grid-col-12">
+
+                                <p:growl id="growl" showDetail="true" sticky="true" />  
+                                <p:fieldset id="novo" legend="Novo Usuário" style="margin-bottom:20px;">
+                                    <p:fieldset legend="Informações Gerais" style="margin-bottom:20px;font-size: 10px;min-height: 70px; width: 95%;" styleClass="ui-grid-col-12"  >
+                                        <div class="ui-grid-col-3">
+                                            <p:outputLabel value="Usuário: "/> <p:inputText value="#{usuarioMB.usuario.login}"   style="width: 80%" required="true" requiredMessage="Informe um login" />
+                                        </div>
+                                        <div class="ui-grid-col-3">
+                                            <p:outputLabel value="Senha: "/> <p:password value="#{usuarioMB.usuario.senha}"  style="width: 80%" required="true" requiredMessage="Informe uma senha" />
+                                        </div>
+                                        <div class="ui-grid-col-6" align="left">
+                                            <p:outputLabel value="Nome Completo: "/> <p:inputText value="#{usuarioMB.usuario.nome}" style="width: 80%" required="true" requiredMessage="Informe um Nome" />
+                                        </div>
+                                    </p:fieldset>
+                                    <div class="ui-grid-row">
+                                        <div class="ui-grid-col-6">
+                                            <p:fieldset legend="Unidade Organizacional" style="margin-bottom:20px;font-size: 10px;min-height: 70px; width: 95%;" styleClass="ui-grid-col-12"  >
+                                                <p:selectOneMenu  value="#{usuarioMB.usuario.uo}" required="true" requiredMessage="Informe a Unidade Organizacional" converter="simpleEntityConverter" style="width: 95%" >
+                                                    <f:selectItem noSelectionOption="true" itemLabel="Selecione uma Unidade Organizacional" />
+                                                    <f:selectItems value="#{unidadeOrganizacionalMB.unidadesOrganizacionais}" var="uo" itemLabel="#{uo.nome}"  itemValue="#{uo}" />
+                                                </p:selectOneMenu>
+                                            </p:fieldset> 
+                                        </div>
+                                        <div class="ui-grid-col-6">
+                                            <p:fieldset legend="Selecione um Perfil" style="margin-bottom:20px;font-size: 10px;min-height: 70px; width: 95%;" styleClass="ui-grid-col-12"  >
+                                                <p:selectOneMenu  value="#{usuarioMB.usuario.authority}" required="true" requiredMessage="Informe um Perfil"  style="width: 95%" >
+                                                    <f:selectItem noSelectionOption="true" itemLabel="Selecione um Perfil" />
+                                                    <f:selectItem itemValue="ROLE_ADM" itemLabel="Gerenciador" />
+                                                    <f:selectItem itemValue="ROLE_MNG" itemLabel="Comum" />
+
+                                                </p:selectOneMenu>
+                                            </p:fieldset> 
+                                        </div>
+                                    </div>
+                                    <div class="ui-grid-row">
+                                        <p:commandButton value="Cadastrar" action="#{usuarioMB.cadastrar()}" update="novo,listar,growl" />
+                                    </div>
+
+
+
+
+
+
+                                </p:fieldset>
+
+                            </div>
+
+
+
+                        </div>
+                        <br/>
+                        <p:fieldset id="listar" legend="Usuários Cadastrados">
+                            <p:dataTable var="usuario" lazy="true" value="#{usuarioMB.usuarios}" style="text-align: center;" rows="20" paginator="true" >
+
+                                <p:column headerText="Usuario"  width="5%">
+
+                                    #{usuario.login}
+                                </p:column>
+                                <p:column headerText="Usuario"  width="5%">
+
+                                    #{usuario.uo.nome}
+                                </p:column>
+
+
+                                <p:column headerText="Ações" width="5%" >
+                                    <p:commandButton icon="ui-icon-search"  ajax="false" >
+
+                                    </p:commandButton>
+
+                                </p:column>
+
+
+                            </p:dataTable>
+
+                        </p:fieldset>
+
+                    </p:panel>
+                </div>
+
+
+            </ui:define>
+        </ui:composition> 
+
+
+    </h:body>
+</html>
+
