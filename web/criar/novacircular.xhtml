@@ -38,7 +38,7 @@
                                                     <p:selectCheckboxMenu id="copias" disabled="#{comunicacaoInternaMB.circularParaTodos}"  label="Unidades Organizacionais" styleClass="ui-grid-col-12" value="#{comunicacaoInternaMB.copiasDespacho}" converter="simpleEntityConverter" 
                                                                           filter="true" filterMatchMode="startsWith" >
 
-                                                        <f:selectItems value="#{unidadeOrganizacionalMB.unidadesOrganizacionais}" itemDisabled="#{uo.id == usuarioBean.usuario.uo.id}" var="uo" itemLabel="#{uo.nome}" itemValue="#{uo}" />
+                                                        <f:selectItems value="#{unidadeOrganizacionalMB.unidadesOrganizacionais}" itemDisabled="#{uo.id == usuarioBean.usuario.uo.id}" var="uo" itemLabel="#{uo.nome} - #{uo.descricao}" itemValue="#{uo}" />
                                                         <p:ajax event="change" process="@this" update="listCopias" />
                                                     </p:selectCheckboxMenu>
                                                 </div>
@@ -49,7 +49,7 @@
                                                     <div align="left" >
                                                         <p:dataList   id="listCopias" value="#{comunicacaoInternaMB.copiasDespacho}" styleClass="" style="width: 95%" var="copias" emptyMessage="Nenhuma Unidade Organizacional Selecionada">
 
-                                                            #{copias.id} - #{copias.nome}
+                                                            #{copias.id} - #{copias.nome} - #{copias.descricao}
                                                         </p:dataList>
                                                     </div>
                                                 </div>

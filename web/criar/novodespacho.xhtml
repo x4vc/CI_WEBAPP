@@ -23,7 +23,7 @@
 
                                 <p:selectOneMenu  value="#{comunicacaoInternaMB.despacho.para}" converter="simpleEntityConverter" style="width: 95%" >
                                     <f:selectItem noSelectionOption="true" itemLabel="Selecione uma Unidade Organizacional" />
-                                    <f:selectItems value="#{unidadeOrganizacionalMB.unidadesOrganizacionais}" itemDisabled="#{uo.id == usuarioBean.usuario.uo.id}" var="uo" itemLabel="#{uo.nome}"  itemValue="#{uo}" />
+                                    <f:selectItems value="#{unidadeOrganizacionalMB.unidadesOrganizacionais}" itemDisabled="#{uo.id == usuarioBean.usuario.uo.id}" var="uo" itemLabel="#{uo.nome} - #{uo.descricao}"  itemValue="#{uo}" />
                                 </p:selectOneMenu>
 
 
@@ -37,7 +37,7 @@
                                         <p:selectCheckboxMenu label="Unidades Organizacionais" styleClass="ui-grid-col-12" value="#{comunicacaoInternaMB.copiasDespacho}" converter="simpleEntityConverter" 
                                                               filter="true" filterMatchMode="startsWith" >
 
-                                            <f:selectItems value="#{unidadeOrganizacionalMB.unidadesOrganizacionais}" itemDisabled="#{uo.id == usuarioBean.usuario.uo.id}" var="uo" itemLabel="#{uo.nome}" itemValue="#{uo}" />
+                                            <f:selectItems value="#{unidadeOrganizacionalMB.unidadesOrganizacionais}" itemDisabled="#{uo.id == usuarioBean.usuario.uo.id}" var="uo" itemLabel="#{uo.nome} - #{uo.descricao}" itemValue="#{uo}" />
                                             <p:ajax event="change" process="@this" update="listCopias" />
                                         </p:selectCheckboxMenu>
                                     </div>

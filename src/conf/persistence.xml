@@ -15,6 +15,7 @@
       <property name="hibernate.connection.driver_class" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
       <property name="hibernate.connection.password" value="237recursos2211"/>
       <property name="hibernate.connection.url" value="jdbc:sqlserver://172.22.8.22:1433;databaseName=CI"/>
+      <!--<property name="hibernate.connection.url" value="jdbc:sqlserver://172.22.8.22:1433;databaseName=CI_Homologa"/>-->
       <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.default_schema" value="dbo"/>

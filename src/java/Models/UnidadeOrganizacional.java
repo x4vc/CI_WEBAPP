@@ -52,6 +52,10 @@ public class UnidadeOrganizacional implements Serializable, BaseEntity {
     @Lob
     @Column(name = "nome")
     private String nome;
+    
+    @Column(name = "descricao")
+    private String descricao;
+    
     @Column(name = "uo_pai")
     private long uoPai;
     @Column(name = "uo_gerenciadora")
@@ -95,6 +99,14 @@ public class UnidadeOrganizacional implements Serializable, BaseEntity {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    
+     public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public long getUoPai() {

@@ -35,7 +35,7 @@
                                             <p:fieldset legend="Unidade Organizacional" style="margin-bottom:20px;font-size: 10px;min-height: 70px; width: 95%;" styleClass="ui-grid-col-12"  >
                                                 <p:selectOneMenu  value="#{usuarioMB.usuario.uo}" required="true" requiredMessage="Informe a Unidade Organizacional" converter="simpleEntityConverter" style="width: 95%" >
                                                     <f:selectItem noSelectionOption="true" itemLabel="Selecione uma Unidade Organizacional" />
-                                                    <f:selectItems value="#{unidadeOrganizacionalMB.unidadesOrganizacionais}" var="uo" itemLabel="#{uo.nome}"  itemValue="#{uo}" />
+                                                    <f:selectItems value="#{unidadeOrganizacionalMB.unidadesOrganizacionais}" var="uo" itemLabel="#{uo.nome} - #{uo.descricao}"  itemValue="#{uo}" />
                                                 </p:selectOneMenu>
                                             </p:fieldset> 
                                         </div>

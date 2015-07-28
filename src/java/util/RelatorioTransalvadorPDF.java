@@ -73,7 +73,9 @@ public abstract class RelatorioTransalvadorPDF {
         documento = new Document();
         writer = PdfWriter.getInstance(documento, outputStream);
         documento.setPageSize(PageSize.A4);
-        HeaderFooter footer = new HeaderFooter(new Phrase(this.assinaturaCI+ "                     Página ", fonte), true);
+        HeaderFooter footer = new HeaderFooter(new Phrase("Assinatura digital: " + this.assinaturaCI + 
+                "                                                                                               Página ", fonte), true);
+        //HeaderFooter footer = new HeaderFooter(new Phrase(this.assinaturaCI+ "                     Página ", fonte), true);
         documento.setFooter(footer);
         
         documento.open();
