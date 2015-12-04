@@ -13,9 +13,11 @@
             <ui:define name="content">
 
                 <div class="ui-grid ui-grid-responsive" >
+                    
                     <p:panel rendered="#{usuarioBean.usuario.login == 'admin'}">
                         <div class="ui-grid-row">
                             <div class="ui-grid-col-12">
+                                <p:outputLabel value="#{usuarioBean.usuario.nome}" />
 
                                 <p:growl id="growl" showDetail="true" sticky="true" />  
                                 <p:fieldset id="novo" legend="Novo Usuário" style="margin-bottom:20px;">

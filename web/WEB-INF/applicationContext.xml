@@ -80,6 +80,7 @@ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
     <beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" >
         <beans:property name="url" value="jdbc:sqlserver://172.22.8.22;databaseName=CI" />
         <!--<beans:property name="url" value="jdbc:sqlserver://172.22.8.22;databaseName=CI_Homologa" />-->
+        <!--<beans:property name="url" value="jdbc:sqlserver://SEASSTIDV-A0721\SQLEXPRESS;databaseName=CI" />-->
         <beans:property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
         <beans:property name="username" value="sa" />
         <beans:property name="password" value="237recursos2211" /> 
